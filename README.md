@@ -19,6 +19,16 @@ npm run build
 ```
 npm run lint
 ```
+## Dependencies
 
+- Vue.js
+- Tailwind CSS
+- Axios (for API calls)
+- Vue Router
+- Vuex
+
+## Additional Notes
+
+Make sure you have **Node.js** and **npm** installed on your system. You can check your Node version by running `node -v` and npm version with `npm -v`.
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
