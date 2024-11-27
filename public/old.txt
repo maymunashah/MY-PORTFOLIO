@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoona's Resume</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav :class="navbarClasses">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">Memoona's Resume</a>
+          <button class="navbar-toggler" type="button" @click="toggleNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" :class="{ show: isNavbarCollapsed }" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li v-for="(page, index) in pages" class="nav-item" :key="index">
+                      <a class="nav-link" :class="{ active: activePage === index }" href="#" @click.prevent="activePage = index">
+                          {{ page.link.text }}
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+
+    <!-- Home Page Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Left Side: Profile Image -->
+            <div class="col-md-6">
+                <img :src="homeContent.imageUrl" alt="Memoona Shah" class="img-fluid rounded-circle" />
+            </div>
+            <!-- Right Side: Name and Introduction -->
+            <div class="col-md-6">
+                <button class="btn btn-outline-primary mb-3">{{ homeContent.fullName }}</button>
+                <p class="lead">{{ homeContent.introduction }}</p>
+            </div>
+        </div>
+
+        <!-- Cards Below -->
+        <div class="row mt-5">
+            <div class="col-md-4" v-for="(card, index) in homeContent.cards" :key="index">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card.title }}</h5>
+                        <p class="card-text">{{ card.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Viewer (Dynamic Content) -->
+    <page-viewer :page="pages[activePage]"></page-viewer>
+
+    <script>
+        let app = Vue.createApp({
+            computed: {
+                navbarClasses() {
+                    return [
+                        `navbar-${this.theme}`,
+                        `bg-${this.theme}`,
+                        'navbar',
+                        'navbar-expand-lg'
+                    ];
+                }
+            },
+            data() {
+                return {
+                    activePage: 0,
+                    theme: 'dark',
+                    pages: [
+                        { link: { text: 'Home', url: '#' }, pageTitle: 'Home Page', content: 'Welcome to my personal portfolio website.' },
+                        { link: { text: 'About', url: '#' }, pageTitle: 'About Me', content: 'Learn more about my background, skills, and experience.' },
+                        { link: { text: 'Portfolio', url: '#' }, pageTitle: 'Portfolio', content: 'Check out my technical projects, graphic design work, and more.' },
+                        { link: { text: 'Blog', url: '#' }, pageTitle: 'My Blog', content: 'Explore my thoughts, ideas, and experiences in my blog posts.' },
+                        { link: { text: 'Contact', url: '#' }, pageTitle: 'Contact Me', content: 'Feel free to reach out via email or social media.' }
+                    ],
+                    isNavbarCollapsed: true,
+
+                    // Home Content as a single object
+                    homeContent: {
+                        imageUrl: "https://via.placeholder.com/200", // Replace with your image path
+                        fullName: "Memoona Shah",
+                        introduction: "Hi, I'm Memoona, a passionate AI consultant and tech enthusiast. I specialize in machine learning and NLP, and I love creating impactful solutions.",
+                        cards: [
+                            {
+                                title: "Education",
+                                description: "Master's in Artificial Intelligence from the University of Bologna. Bachelor's in Electronics Engineering from MUET, Pakistan."
+                            },
+                            {
+                                title: "Work History",
+                                description: "AI Consultant at Loop AI, working on AI solutions and NLP projects. Former experience as an electronics engineer."
+                            },
+                            {
+                                title: "Hobbies",
+                                description: "Cycling, lacrosse, crocheting, and volunteering. I also enjoy keeping up with the latest tech trends and playing board games."
+                            }
+                        ]
+                    }
+                };
+            },
+            methods: {
+                toggleNavbar() {
+                    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+                }
+            }
+        });
+
+        app.component('page-viewer', {
+            props: ['page'],
+            template: ` 
+            <div class="container"> 
+            <h1>{{ page.pageTitle }}</h1> 
+            <p>{{ page.content }}</p> 
+            </div> 
+            `
+        });
+
+        app.mount('body');
+    </script>
+
+    <!-- Bootstrap JavaScript (for responsive behavior) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

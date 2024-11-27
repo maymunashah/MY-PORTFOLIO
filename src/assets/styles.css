@@ -1,0 +1,28 @@
+/* Global Styles - styles.css */
+
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styling */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Font Awesome Icons */
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+  
+  /* Styling for headers */
+  h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+  
+  /* Other global styles can go here */
+  
