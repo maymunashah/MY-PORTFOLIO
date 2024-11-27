@@ -1,6 +1,6 @@
 <template>
   <div class="portfolio-page">
-    <h2 class="section-title">My Portfolio</h2>
+    <h2 class="section-title">Projects</h2>
     <div class="projects-container">
       <div v-for="project in data" :key="project.name" class="project-item">
         <!-- Project Title -->
@@ -80,6 +80,7 @@ export default {
   justify-content: center;
   gap: 15px;
   margin-bottom: 15px;
+  color:blue
 }
 
 .tech-icon {

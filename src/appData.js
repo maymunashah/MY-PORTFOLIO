@@ -133,6 +133,7 @@ const appData = {
     phone: "+39 340 1935369",
     linkedin: "https://www.linkedin.com/in/memoonashah/",
     github: "https://github.com/maymunashah",
+    youtube: "https://www.youtube.com/c/DeepFocuswithMemoona",
   },
   portfolio: [
     {
